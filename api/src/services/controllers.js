@@ -130,9 +130,46 @@ const createRecipe = async (body) => {
 
 };
 
+//----------------------------------------------------------------
+
+const allDiets = async () => {
+  let diets = await Diet.findAll({attributes: ["name"]});
+  try {
+    // let dietsAll = await axios.get(
+    //   `https://api.spoonacular.com/recipes/complexSearch?apiKey=${getApiKey()}&addRecipeInformation=true&number=100`
+    // );
+
+        if (diets.length > 0) {
+            return diets;
+
+        } else {
+            let dietss = await Diet.bulkCreate([
+                {name: 'gluten free'},
+                {name: 'dairy free'},
+                {name: 'lacto ovo vegetarian'},
+                {name: 'vegan'},
+                {name: 'pescatarian'},
+                {name: 'paleolithic'},
+                {name: 'primal'},
+                {name: 'fodmap friendly'},
+                {name: 'whole 30'},
+                {name: 'vegetarian'},
+                {name: 'ketogenic'}
+            ]);
+
+            return dietss;
+
+        }
+
+  } catch (error) {
+    console.log("allDiets", error);
+  }
+};
+
 module.exports = {
   allRecipes,
   recipesByName,
   recipesById,
   createRecipe,
+  allDiets,
 };

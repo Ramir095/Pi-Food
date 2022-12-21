@@ -19,7 +19,15 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     healthScore: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
+      defaultValue: 0,
+      validate:{
+        min:0,
+        max:100,
+        isNumber(value){
+          if(isNaN(value)) throw new Error('healthScore must be a number')
+        }
+      }
     },
     stepByStep: {
       type: DataTypes.ARRAY(DataTypes.STRING(5000))
