@@ -19,10 +19,13 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const {
+  PORT
+} = process.env;
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(7720, () => {
+  server.listen(PORT, () => {
     console.log('%s listening at 7720'); // eslint-disable-line no-console
   });
 });
