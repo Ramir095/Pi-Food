@@ -12,15 +12,14 @@ const server = express();
 
 server.name = 'API';
 
+var corsOptions = {
+  origin: 'https://pi-food-gray.vercel.app',
+}
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
-server.use(cors())
-// var corsOptions = {
-//   origin: 'https://pi-food-gray.vercel.app',
-//   options: 'optionsSuccessStatus: 200'
-// }
+server.use(cors(corsOptions))
 // server.use((req, res, next) => {
 //   res.header('Access-Control-Allow-Origin', 'http://localhost:3000/', 'https://pi-food-gray.vercel.app'); // update to match the domain you will make the request from
 //   res.header('Access-Control-Allow-Credentials', 'true');
