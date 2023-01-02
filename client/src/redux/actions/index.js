@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import {
     GET_ALL_RECIPES,
     GET_RECIPE,
@@ -13,10 +12,12 @@ import {
     FILTER_CREATED,
 } from './action-types';
 
+const URL = `https://pi-food-production-6f65.up.railway.app`;
+
 export const getAllRecipes = () => {
     return function(dispatch) {
         dispatch({type: START_LOADING})
-        axios.get('http://localhost:3001/recipes')
+        axios.get(`${URL}/recipes`)
         .then(r => r.data)
         .then(json => dispatch({
             type: GET_ALL_RECIPES,
@@ -35,7 +36,7 @@ export const getRecipe = (payload) => {
 export const getRecipeDetail = (id) => {
     return async function(dispatch) {
         dispatch({type: START_LOADING})
-        axios.get(`http://localhost:3001/recipes/${id}`)
+        axios.get(`${URL}/recipes/${id}`)
         .then(r => r.data)
         .then (json => dispatch({
             type: GET_RECIPE_DETAIL,
@@ -46,7 +47,7 @@ export const getRecipeDetail = (id) => {
 
 export const createRecipe = (payload) => {
     return async function() {
-        let response = await axios.post('http://localhost:3001/recipes', payload);
+        let response = await axios.post(`${URL}/recipes`, payload);
         return response
     }
 };
@@ -54,7 +55,7 @@ export const createRecipe = (payload) => {
 export const getDiets = () => {
     return async function (dispatch) {
         dispatch({type: START_LOADING})
-        axios.get('http://localhost:3001/diets')
+        axios.get(`${URL}/diets`)
         .then(r => r.data)
         .then(json => dispatch({
             type: GET_DIETS,
