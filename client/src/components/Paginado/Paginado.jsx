@@ -1,4 +1,5 @@
 import React from "react";
+import { Div } from "./Paginado.styles";
 
 const Paginado = ({ recipesPerPage, recipes, paged }) => {
   const pageNumbers = [];
@@ -8,14 +9,14 @@ const Paginado = ({ recipesPerPage, recipes, paged }) => {
   }
 
   return (
-    <div>
+    <Div>
       {pageNumbers &&
         pageNumbers.map((number) => (
           <button onClick={() => paged(number)} key={number}>
             {number}
           </button>
         ))}
-    </div>
+    </Div>
   );
 };
 

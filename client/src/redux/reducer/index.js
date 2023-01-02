@@ -55,6 +55,7 @@ const rootReducer = (state = initialState, action) => {
             };
         case GET_DIETS:
             return {
+                loaded: true,
                 ...state,
                 diets: action.payload,
             }; 
@@ -89,7 +90,7 @@ const rootReducer = (state = initialState, action) => {
             })
             return {
                 ...state,
-                recipes: action.payload === "All" ? state.allRecipes : sortedArr,
+                recipes: sortedArr,
             }    
         case ORDER_BY_HEALTHSCORE:
             let sortedScore = action.payload === 'Asc' ? state.recipes.sort(function (a, b) {
@@ -113,7 +114,7 @@ const rootReducer = (state = initialState, action) => {
             
             return {
                 ...state,
-                recipes: action.payload === "All" ? state.allRecipes : sortedScore,
+                recipes: sortedScore,
             }
         case FILTER_CREATED:
             const allRecipe = state.allRecipes

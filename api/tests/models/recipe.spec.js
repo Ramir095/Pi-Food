@@ -18,5 +18,22 @@ describe('Recipe model', () => {
         Recipe.create({ name: 'Milanesa a la napolitana' });
       });
     });
+    //debe tirar error si no se ingresa una descripcion(summary)
+    describe('No summary', () => {
+      it('error when entering recipe without summary', (done) => {
+        Recipe.create({ title: 'Milanesa a la napolitana'})
+        .then(() => done(new Error('It requires a valid summary')))
+          .catch(() => done());
+      })
+    })
+    //debe tirar error si se ingresa un puntaje mayor a 100.0
+    describe('Incorrect score', () => {
+      it('error when entering a spoonacularScore greater than 100', (done) => {
+        Recipe.create({ title: 'Milanesa a la napolitana',
+                        spoonacularScore: 150.90})
+        .then(() => done(new Error('It requires a valid spoonacularScore')))
+          .catch(() => done());
+      })
+    })
   });
 });

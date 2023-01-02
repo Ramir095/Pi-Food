@@ -22,3 +22,14 @@ describe('Recipe routes', () => {
     );
   });
 });
+
+describe('/recipes/:idReceta', function () {
+  it('GET responde con la data de la receta', function () {
+      agent.get('/recipes/716426')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .expect(function (res) {
+        expect(res.body.title).to.eql("Cauliflower, Brown Rice, and Vegetable Fried Rice")
+      });
+  });
+});

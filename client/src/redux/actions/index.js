@@ -46,7 +46,7 @@ export const getRecipeDetail = (id) => {
 
 export const createRecipe = (payload) => {
     return async function() {
-        let response = await axios.post('http://localhost:3001/diets', payload);
+        let response = await axios.post('http://localhost:3001/recipes', payload);
         return response
     }
 };

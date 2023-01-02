@@ -1,10 +1,11 @@
 import React from "react";
 import Card from "../Card/Card";
+import { Div } from "./Cards.styles";
 
 const Cards = ({ currentRecipes }) => {
-  //console.log(recipes);
+  //console.log("Cards", currentRecipes);
   return (
-    <div>
+    <Div>
       {
         currentRecipes &&
           currentRecipes.map((r) => (
@@ -14,10 +15,11 @@ const Cards = ({ currentRecipes }) => {
               name={r.name}
               image={r.image}
               diets={r.diets}
+              dietsDb={r.Diets}
             />
         ))
       }
-    </div>
+    </Div>
   );
 };
 

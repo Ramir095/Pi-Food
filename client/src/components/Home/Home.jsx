@@ -5,12 +5,14 @@ import { getAllRecipes, filterByDiets, orderByAlphabetically, orderByHealthScore
 import Cards from '../Cards/Cards';
 import Filters from '../Filters/Filters';
 import Paginado from '../Paginado/Paginado';
-import Nav from '../Nav/Nav'
+import Nav from '../Nav/Nav';
+import Loading from '../Loading/Loading';
  
 const Home = () => {
 
   const dispatch = useDispatch();
   const recipes = useSelector(state => state.recipes);
+  let isLoading = useSelector(state => state.loaded)
  
   const [ orden, setOrden ] = useState('');
   const [ score, setScore ] = useState('')
@@ -41,18 +43,23 @@ const Home = () => {
 
   const handleFilterDiets = (e) => {
     dispatch(filterByDiets(e.target.value));
+    setCurrentPage(1);
   };
 
   const handleOrderAlphabetically = (e) => {
     e.preventDefault();
-    dispatch(orderByAlphabetically(e.target.value));
+    e.target.value === "All" 
+      ? dispatch(getAllRecipes()) 
+      : dispatch(orderByAlphabetically(e.target.value));
     setCurrentPage(1);
     setOrden(`Ordenando ${e.target.value}`)
   };
 
   const handleOrderByHealthScore = (e) => {
     e.preventDefault();
-    dispatch(orderByHealthScore(e.target.value))
+    e.target.value === "All" 
+      ? dispatch(getAllRecipes()) 
+      : dispatch(orderByHealthScore(e.target.value))
     setCurrentPage(1);
     setScore(`Ordenando ${e.target.value}`)
   };
@@ -60,6 +67,10 @@ const Home = () => {
   const handleFilterCreated = (e) => {
     dispatch(filterCreated(e.target.value))
   };
+
+  if(!isLoading) {
+    return <Loading />
+  }
 
   return (
     <div>
