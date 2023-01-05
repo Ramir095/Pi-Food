@@ -4,7 +4,10 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routesRecipes = require('./routes/routesRecipes.js');
 const routesDiets = require('./routes/routesDiets.js');
-const cors = require('cors')
+const cors = require('cors');
+const {
+  URL_APP,
+} = process.env;
 
 require('./db.js');
 
@@ -13,7 +16,7 @@ const server = express();
 server.name = 'API';
 
 var corsOptions = {
-  origin: 'https://pi-food-gray.vercel.app',
+  origin: `${URL_APP}`,
 }
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));

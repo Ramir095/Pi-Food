@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Div = styled.div`
+  position: relative;
   & a {
     background-color: #f4f0ee;
     border: 2px solid white;
@@ -36,9 +37,30 @@ export const Div = styled.div`
 `;
 
 export const P = styled.p`
-      color: black;
-      font-weight: 900;
-      text-align: center;
-      padding: 1px 5px;
-      width: 100%;
-`; 
+  color: black;
+  font-weight: 900;
+  text-align: center;
+  padding: 1px 5px;
+  width: 100%;
+`;
+
+export const Button = styled.button`
+  width: 35px;
+  height: 35px;
+  font-size: 1.1rem;
+  background-color: rgb(255, 255, 255, 0.603);
+  /* background-color: #5b5b64; */
+  color: rgb(15, 15, 15);
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  right: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    font-weight: bold;
+    color: rgb(255, 254, 254);
+    width: 37px;
+    height: 37px;
+  }
+`;

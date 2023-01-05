@@ -1,0 +1,4 @@
+es la forma de conectar la informacion que tenemos en la base de datos al front pasando por el back 
+
+
+el funck es un Middleware permite que las acciones puedan ejecutarse de manera ascincrona

@@ -1,4 +1,4 @@
-const { allRecipes, recipesByName, recipesById, createRecipe } = require("./controllers");
+const { allRecipes, recipesByName, recipesById, createRecipe, recipeDelete } = require("./controllers");
 
 const getAllRecipes = async (req, res) => {
   const { name } = req.query;
@@ -38,8 +38,19 @@ const postRecipe = async (req, res) => {
   }
 };
 
+const deleteRecipe = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const recipeDel = await recipeDelete(id);
+    recipeDel ? res.status(200).send(`recipe ${id} deleted`) : res.send(`recipe not found`)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
   getAllRecipes,
   getRecipesById,
   postRecipe,
+  deleteRecipe
 };

@@ -4,12 +4,15 @@ const fs = require('fs');
 const path = require('path');
 const {
   PGUSER, PGPASSWORD, PGHOST, PGPORT, PGDATABASE
+  // DB_USER, DB_PASSWORD, DB_HOST
 } = process.env;
 
 const sequelize = new Sequelize(`postgres://${ PGUSER }:${ PGPASSWORD }@${ PGHOST }:${ PGPORT }/${ PGDATABASE }`, {
-  logging: false, // set to console.log to see the raw SQL queries
+  logging: false, // set to console.log to see the raw SQL queries Lo desabilitamos para que no nos tira tanta información (info de la conexión)
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
+// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`
+// const sequelize = new Sequelize(`postgres://${ PGUSER }:${ PGPASSWORD }@${ PGHOST }:${ PGPORT }/${ PGDATABASE }`,
 const basename = path.basename(__filename);
 
 const modelDefiners = [];

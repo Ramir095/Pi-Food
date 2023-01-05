@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getRecipeDetail } from "../../redux/actions/index";
-import { Div, Box, Header, Middle, Detail, Image } from "./RecipeDetails.styles";
+import { Div, Box, Header, Middle, Detail, Image, Details } from "./RecipeDetails.styles";
 import Loading from "../Loading/Loading";
 
 const RecipeDetail = ({ match }) => {
@@ -41,7 +41,7 @@ const RecipeDetail = ({ match }) => {
           </Image>
           <Detail>
             <h3>Diets: </h3>
-            {recipe.Diets ? (
+            {recipe.Diets?.length > 0 ? (
               recipe.Diets.map((d, i) => (
                 <ul key={"name" + i}>
                   <li>{d.name}</li>
@@ -54,16 +54,18 @@ const RecipeDetail = ({ match }) => {
                 </ul>
               ))
             ) : (
-              <h1>{"This recipe does not belong to a diet"}</h1>
+              <p>{"This recipe does not belong to a diet"}</p>
             )}
           </Detail>
         </Middle>
-        <div>
+        <Details>
           <h3>Summary: </h3> <br/>
           <div dangerouslySetInnerHTML={{ __html: recipe.summary }} /> <br/>
           <h3>Step by step: </h3> <br/>
-          <p>{recipe.stepByStep?.join(". ")}</p>
-        </div>
+          {
+            recipe.stepByStep.length > 0 ? <p>{recipe.stepByStep?.join(". ")}</p> : <p>The recipe does not have the step by step.</p>
+          }
+        </Details>
       </Box>
     </Div>
   );

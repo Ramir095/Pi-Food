@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllRecipes, filterByDiets, orderByAlphabetically, orderByHealthScore, filterCreated } from '../../redux/actions/index';
+import { getAllRecipes, filterByDiets, orderByAlphabetically, orderByHealthScore, filterCreated, deleteRecipe } from '../../redux/actions/index';
 import Cards from '../Cards/Cards';
 import Filters from '../Filters/Filters';
 import Paginado from '../Paginado/Paginado';
@@ -15,7 +15,7 @@ const Home = () => {
   let isLoading = useSelector(state => state.loaded)
  
   const [ orden, setOrden ] = useState('');
-  const [ score, setScore ] = useState('')
+  const [ score, setScore ] = useState('');
 
   // Estado con la pagina actual 
   const [ currentPage, setCurrentPage ] = useState(1);
@@ -39,6 +39,7 @@ const Home = () => {
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(getAllRecipes());
+    setCurrentPage(1);
   };
 
   const handleFilterDiets = (e) => {
@@ -65,7 +66,13 @@ const Home = () => {
   };
 
   const handleFilterCreated = (e) => {
-    dispatch(filterCreated(e.target.value))
+    dispatch(filterCreated(e.target.value));
+    setCurrentPage(1);
+  };
+
+  const handleDelete = (id) => {
+    console.log("Acá esta el id:", id);
+    dispatch(deleteRecipe(id))
   };
 
   if(!isLoading) {
@@ -79,7 +86,7 @@ const Home = () => {
         <Filters handleClick={handleClick} handleFilterDiets={handleFilterDiets} handleOrderAlphabetically={handleOrderAlphabetically} handleFilterCreated={handleFilterCreated} handleOrderByHealthScore={handleOrderByHealthScore} />
       </div>
       <div>
-        <Cards currentRecipes={currentRecipes}/>
+        <Cards currentRecipes={currentRecipes} handleDelete={handleDelete}/>
       </div>
       <div>
         <Paginado recipesPerPage={recipesPerPage} recipes={recipes.length} paged={paged}/>

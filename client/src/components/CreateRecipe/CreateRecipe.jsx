@@ -15,6 +15,8 @@ import {
   P,
 } from "./CreateRecipe.styles";
 
+import ToastNotification from "../ToastNotification/ToastNotification";
+
 const CreateRecipe = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -34,6 +36,7 @@ const CreateRecipe = () => {
   });
   const [errors, setErrors] = useState({});
   const [submit, setSubmit] = useState(true);
+  const [toast, setToast] = useState(false);
 
   const validate = (input) => {
     let errors = {};
@@ -119,7 +122,7 @@ const CreateRecipe = () => {
   };
 
   const handleSelect = (e) => {
-    console.log("aca esta el error", input.diets);
+    // console.log("aca esta el error", input.diets);
     setInput({
       ...input,
       diets: [...input.diets, e.target.value],
@@ -127,7 +130,7 @@ const CreateRecipe = () => {
   };
 
   const handleDelete = (el) => {
-    console.log("Dentro de handleDelete >>", el);
+    // console.log("Dentro de handleDelete >>", el);
     const dieta = input.diets.filter((d) => d !== el);
     console.log({ dieta });
     setInput({
@@ -136,11 +139,16 @@ const CreateRecipe = () => {
     });
   };
 
+  const handleToast = () => {
+    setToast(true)
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log("En busca de diets", input);
     dispatch(createRecipe(input));
-    alert("Receta creada");
+    handleToast()
+    // alert("Receta creada");
     setInput({
       name: "",
       summary: "",
@@ -149,13 +157,16 @@ const CreateRecipe = () => {
       image: "",
       diets: [],
     });
-    history.push("/home");
+    setTimeout(() => {
+      history.push("/home");
+    }, 2000)
   };
 
   return (
     <Div>
       <Box>
         <Header>
+          { toast === true ? <ToastNotification /> : "" }
           <h1>Create your recipe</h1>
           <Link to="./home">
             <button>Back</button>

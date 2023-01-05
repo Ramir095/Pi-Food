@@ -8,11 +8,13 @@ export const Div = styled.div`
 export const Header = styled.div`
   background-color: #5b5b64;
   display: flex;
+  width: fit-content;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  width: 41%;
+  padding-right: 8px;
   height: 40px;
+  margin-bottom: 16px;
   & select {
     background-color: rgba(255, 255, 255, 0.603);
     margin: 2px;

@@ -7,7 +7,7 @@ export const Div = styled.div`
     align-items: center;
     & button {
         padding: 2px 6px;
-        margin: 1px;
+        margin: 16px 1px;
         border-radius: 6px;
         background-color: #5b5b64;
         color: white;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Div = styled.div`
+
   width: 100%;
   min-height: 100vh;
   max-height: fit-content;
@@ -53,6 +54,7 @@ export const Middle = styled.div`
 `;
 
 export const Detail = styled.div`
+
   width: 100%;
   height: 100%;
   padding: 10px;
@@ -82,5 +84,14 @@ export const Detail = styled.div`
 export const Image = styled.div`
     & img {
         border-radius: 6px;
+        width: 556px;
+        height: 400px;
     }
 `;
+
+export const Details = styled.div`
+    width: 100%;
+    & p {
+      background-color: yellow;
+    }
+`; 

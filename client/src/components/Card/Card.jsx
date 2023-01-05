@@ -1,16 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Div, P } from "./Card.styles.";
+import { Div, P, Button } from "./Card.styles.";
 
-const Card = ({ id, name, image, diets, dietsDb }) => {
-  // console.log("diets", diets);
-  // console.log("dietsDb", dietsDb);
+const Card = ({ id, name, image, diets, dietsDb, createdInDb, handleDelete}) => {
   const dietsDataB = dietsDb?.map((d) => d.name);
-  // console.log("dietsDb.map", dietsDataB);
+  
   if (dietsDb) diets = dietsDataB;
 
   return (
     <Div>
+      {createdInDb ? <Button onClick={ handleDelete }>X</Button> : "" }
       <Link to={`/recipeDetail/${id}`}>
         <img src={image} alt="pending" />
         <P>{name}</P>

@@ -2,8 +2,7 @@ import React from "react";
 import Card from "../Card/Card";
 import { Div } from "./Cards.styles";
 
-const Cards = ({ currentRecipes }) => {
-  //console.log("Cards", currentRecipes);
+const Cards = ({ currentRecipes, handleDelete }) => {
   return (
     <Div>
       {
@@ -16,6 +15,8 @@ const Cards = ({ currentRecipes }) => {
               image={r.image}
               diets={r.diets}
               dietsDb={r.Diets}
+              createdInDb={r.createdInDb}
+              handleDelete={() => handleDelete(r.id)}
             />
         ))
       }

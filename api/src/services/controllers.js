@@ -3,11 +3,11 @@ const { conn } = require("../db");
 const { Recipe, Diet } = conn.models;
 
 const apiKeys = [
-  { key: "a65963596ba7491bb4b518216df3d1fc" },
-  { key: "31786421b6c2422c9af9a03bdda49875" },
-  { key: "4daef69d9728459bbc1a4b28f283de55" },
-  { key: "220d00053f6444a68a21c7538e75072b" },
-  { key: "fd0c2b1fa8d54335942fe50414d1d435" },
+  { key: "855a06c0f3464fef9cf2fae6042c8a01" },
+  { key: "07be7b1491a444d9ae11e40cdbc8b2b5" },
+  { key: "1514abb286ba4986afe6b63438a3541a" },
+  { key: "901d1a9a1aa24d8d9e2accc883bee57a" },
+  // { key: "fd0c2b1fa8d54335942fe50414d1d435" },
 ];
 
 // funcion que retorna un apikey aleatorio cada vez q es llamado
@@ -130,15 +130,22 @@ const createRecipe = async (body) => {
 
 };
 
+const recipeDelete = async (id) => {
+  try {
+    const recipeFound = Recipe.destroy({
+      where: { id }
+    })
+    return recipeFound;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 //----------------------------------------------------------------
 
 const allDiets = async () => {
   let diets = await Diet.findAll({attributes: ["name"]});
   try {
-    // let dietsAll = await axios.get(
-    //   `https://api.spoonacular.com/recipes/complexSearch?apiKey=${getApiKey()}&addRecipeInformation=true&number=100`
-    // );
-
         if (diets.length > 0) {
             return diets;
 
@@ -171,5 +178,6 @@ module.exports = {
   recipesByName,
   recipesById,
   createRecipe,
+  recipeDelete,
   allDiets,
 };
