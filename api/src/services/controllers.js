@@ -21,7 +21,6 @@ const apiRecipes = async () => {
     let allRecipes = await axios.get(
       `https://api.spoonacular.com/recipes/complexSearch?apiKey=${getApiKey()}&addRecipeInformation=true&number=100`
     );
-    //console.log(allRecipes)
     allRecipes = await allRecipes.data.results.map((r) => {
       return {
         id: r.id,
