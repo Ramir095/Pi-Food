@@ -1,4 +1,47 @@
+Son interfaces, funciones, informaciones    
 es la forma de conectar la informacion que tenemos en la base de datos al front pasando por el back 
 
 
 el funck es un Middleware permite que las acciones puedan ejecutarse de manera ascincrona
+
+
+
+
+Action get diets
+  let found = state.allRecipes.filter((f) => f);
+      console.log(found);
+
+
+async await de crear recetas
+
+export const createRecipe = (payload) => {
+    return async function() {
+        let response = await axios.post(`${URL_C}/recipes`, payload);
+        return response
+    }
+};
+
+// const URL_C = 'https://pi-food-production-6f65.up.railway.app';
+
+
+
+/// getAllRecipes en async await
+
+export const getAllRecipes = () => {
+    return async function (dispatch) {
+        dispatch({type: START_LOADING})
+        const all = await axios.get(`${URL_C}/recipes`)
+        const response = await all.data
+        dispatch({
+            type: GET_ALL_RECIPES,
+            payload: response
+        })  
+    }
+}
+// createRecipe
+export const createRecipe = (payload) => {
+    return async function() {
+        let response = await axios.post(`${URL_C}/recipes`, payload);
+        return response
+    }
+};

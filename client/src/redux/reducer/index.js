@@ -76,8 +76,6 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case FILTER_BY_DIETS:
-      let found = state.allRecipes.filter((f) => f);
-      console.log(found);
       let allRecipess;
       if (action.payload === "All") {
         allRecipess = [...state.allRecipes];

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getRecipe } from "../../redux/actions/index";
-import { Div, Header } from "./Nav.styles";
+import { Div, Header, Img } from "./Nav.styles";
+import logo from '../../assets/recipes.png'
 
-const Nav = () => {
+const Nav = ({setCurrentPage}) => {
   const dispatch = useDispatch();
   const [recipe, setRecipe] = useState("");
 
@@ -12,11 +13,12 @@ const Nav = () => {
     //console.log(e.target.value);
     e.preventDefault();
     dispatch(getRecipe(recipe));
+    setCurrentPage(1)
   };
 
   return (
     <Div>
-      <Link to="/home"> Home </Link>
+      <Link to="/home"> <Img src={logo} alt="" /> </Link>
       <Header>
         <form onSubmit={handleSearchByName}>
           <input

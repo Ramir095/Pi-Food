@@ -15,7 +15,7 @@ const Card = ({ id, name, image, diets, dietsDb, createdInDb, handleDelete}) => 
         <P>{name}</P>
         <div>
           {
-            <p>Diets: {diets ? diets.join(", ") : "No diets"}</p>
+            diets?.length > 0 ? <p>Diets: {diets.join(", ")}</p> : <p>No diets</p>
           }
         </div>
       </Link>

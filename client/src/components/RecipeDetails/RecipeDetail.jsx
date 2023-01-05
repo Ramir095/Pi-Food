@@ -63,7 +63,7 @@ const RecipeDetail = ({ match }) => {
           <div dangerouslySetInnerHTML={{ __html: recipe.summary }} /> <br/>
           <h3>Step by step: </h3> <br/>
           {
-            recipe.stepByStep.length > 0 ? <p>{recipe.stepByStep?.join(". ")}</p> : <p>The recipe does not have the step by step.</p>
+            recipe.stepByStep?.length > 0 ? <p>{recipe.stepByStep?.join(". ")}</p> : <p>The recipe does not have the step by step.</p>
           }
         </Details>
       </Box>

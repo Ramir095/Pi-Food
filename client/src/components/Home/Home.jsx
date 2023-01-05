@@ -82,7 +82,7 @@ const Home = () => {
   return (
     <div>
       <div>
-        <Nav />
+        <Nav setCurrentPage = {setCurrentPage} />
         <Filters handleClick={handleClick} handleFilterDiets={handleFilterDiets} handleOrderAlphabetically={handleOrderAlphabetically} handleFilterCreated={handleFilterCreated} handleOrderByHealthScore={handleOrderByHealthScore} />
       </div>
       <div>

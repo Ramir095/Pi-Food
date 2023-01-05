@@ -13,11 +13,10 @@ import {
     DELETE_RECIPE,
 } from './action-types';
 
-// const URL_C = 'http://localhost:3001';
 const URL_C = 'https://pi-food-production-6f65.up.railway.app';
 
 export const getAllRecipes = () => {
-    return function(dispatch) {
+    return async function(dispatch) {
         dispatch({type: START_LOADING})
         axios.get(`${URL_C}/recipes`)
         .then(r => r.data)
@@ -48,13 +47,6 @@ export const getRecipeDetail = (id) => {
         .catch((error) => console.log(error))
     };
 };
-
-// export const createRecipe = (payload) => {
-//     return async function() {
-//         let response = await axios.post(`${URL_C}/recipes`, payload);
-//         return response
-//     }
-// };
 
 export const createRecipe = (payload) => {
     return async function(dispatch){

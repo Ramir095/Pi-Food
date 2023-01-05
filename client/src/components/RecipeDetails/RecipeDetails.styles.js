@@ -85,13 +85,13 @@ export const Image = styled.div`
     & img {
         border-radius: 6px;
         width: 556px;
-        height: 400px;
+        height: 420px;
     }
 `;
 
 export const Details = styled.div`
     width: 100%;
-    & p {
+    /* & p {
       background-color: yellow;
-    }
+    } */
 `; 

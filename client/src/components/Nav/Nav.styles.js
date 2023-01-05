@@ -14,8 +14,6 @@ export const Div = styled.div`
   a:last-child {
     width: 125px;
     padding-left: 15px;
-  }
-  & a {
     text-decoration: none;
     background: black;
     padding: 10px;
@@ -23,8 +21,8 @@ export const Div = styled.div`
     color: white;
     border-radius: 5px;
     font-weight: bolder;
-    width: 67px;
-    
+    /* width: 67px; */
+    text-align: center;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     &:hover {
@@ -34,6 +32,11 @@ export const Div = styled.div`
       cursor: pointer;
     }
   }
+`;
+
+export const Img = styled.img`
+  width: 50px;
+  height: 50px;
 `;
 
 export const Header = styled.div`
