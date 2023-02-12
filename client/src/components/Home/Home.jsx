@@ -71,7 +71,6 @@ const Home = () => {
   };
 
   const handleDelete = (id) => {
-    console.log("Acá esta el id:", id);
     dispatch(deleteRecipe(id))
   };
 

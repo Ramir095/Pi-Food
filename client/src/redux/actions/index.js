@@ -13,7 +13,8 @@ import {
     DELETE_RECIPE,
 } from './action-types';
 
-const URL_C = 'https://pi-food-production-6f65.up.railway.app';
+// const URL_C = 'http://localhost:3001';
+const URL_C= `https://pi-food-production-6f65.up.railway.app`;
 
 export const getAllRecipes = () => {
     return async function(dispatch) {

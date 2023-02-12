@@ -20,10 +20,9 @@ import ToastNotification from "../ToastNotification/ToastNotification";
 const CreateRecipe = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const diets = useSelector((state) => state.diets); // allDiets
-  // let isLoading = useSelector((state) => state.loaded);
+  const diets = useSelector((state) => state.diets);
 
-  const [step, setStep] = useState({}); // indexPaso
+  const [step, setStep] = useState({});
   const [cantP, setCantP] = useState(1);
   // const [summary, setSummary] = useState('')
   const [input, setInput] = useState({
@@ -33,6 +32,7 @@ const CreateRecipe = () => {
     stepByStep: [],
     image: "",
     diets: [],
+    // check: "",
   });
   const [errors, setErrors] = useState({});
   const [submit, setSubmit] = useState(true);
@@ -64,13 +64,7 @@ const CreateRecipe = () => {
     dispatch(getDiets());
   }, [dispatch]);
 
-  // if (!isLoading) {
-  //   return <Loading />;
-  // }
-
   const handleChange = (e) => {
-    // console.log("name: ", e.target.name);
-    // console.log("Shea", e.target.value);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -85,8 +79,6 @@ const CreateRecipe = () => {
 
   const handleStepByStep = (e, i) => {
     let stepByStepTwo = [];
-    // console.log(stepByStepTwo);
-    // console.log("es la i", i);
     setStep({
       // setIndexPaso
       ...step, // indexPaso
@@ -122,7 +114,6 @@ const CreateRecipe = () => {
   };
 
   const handleSelect = (e) => {
-    // console.log("aca esta el error", input.diets);
     setInput({
       ...input,
       diets: [...input.diets, e.target.value],
@@ -130,7 +121,6 @@ const CreateRecipe = () => {
   };
 
   const handleDelete = (el) => {
-    // console.log("Dentro de handleDelete >>", el);
     const dieta = input.diets.filter((d) => d !== el);
     console.log({ dieta });
     setInput({
@@ -139,16 +129,21 @@ const CreateRecipe = () => {
     });
   };
 
+  // const handleCheck = (e) => {
+  //   setInput({
+  //     ...input,
+  //     check: e.target.value
+  //   })
+  // };
+
   const handleToast = () => {
     setToast(true)
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log("En busca de diets", input);
     dispatch(createRecipe(input));
     handleToast()
-    // alert("Receta creada");
     setInput({
       name: "",
       summary: "",
@@ -156,6 +151,7 @@ const CreateRecipe = () => {
       stepByStep: [],
       image: "",
       diets: [],
+      check: "",
     });
     setTimeout(() => {
       history.push("/home");
@@ -172,6 +168,7 @@ const CreateRecipe = () => {
             <button>Back</button>
           </Link>
         </Header>
+
         <Form onSubmit={(e) => handleSubmit(e)}>
           <InputShort>
             <label htmlFor="name">Name: </label>
@@ -184,6 +181,17 @@ const CreateRecipe = () => {
             />
             {errors.name && <P>{errors.name}</P>}
           </InputShort>
+          
+          {/* <InputShort>
+            <label htmlFor="check">Te gusto la receta?</label>
+
+            <select onChange={(e) => handleCheck(e)}>
+              <option  value="Si" name="check"> Si </option>
+              <option  value="No" name="check"> No </option>
+            </select>
+
+          </InputShort> */}
+
           <InputShort>
             <label htmlFor="image">Link of the image: </label>
             <input
@@ -209,6 +217,8 @@ const CreateRecipe = () => {
             />{" "}
             {errors.healthScore && <P>{errors.healthScore}</P>}
           </InputShort>
+
+
           <InputBox>
             <label htmlFor="summary">Summary: </label>
             <textarea
@@ -227,7 +237,6 @@ const CreateRecipe = () => {
             <Button onClick={() => addStep()}>Add step</Button>
             {step &&
               input.stepByStep.map((_d, i) => {
-                // console.log("i dos", i);
                 return (
                   <input
                     key={"stepByStep" + i}

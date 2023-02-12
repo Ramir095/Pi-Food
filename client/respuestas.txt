@@ -6,6 +6,14 @@ el funck es un Middleware permite que las acciones puedan ejecutarse de manera a
 
 
 
+Que es una orm?
+
+es un modelo de programacion que nos ayuda a escribir en el lenguaje que estemos usando en la base de datos sin tener que usar sql
+
+
+Que es express?
+Expressjs es un framework rápido que permite definir rutas que corresponden a métodos HTTP como son peticiones
+GET, POST, PUT, DELETE.
 
 Action get diets
   let found = state.allRecipes.filter((f) => f);

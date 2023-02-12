@@ -151,10 +151,6 @@ const rootReducer = (state = initialState, action) => {
         recipes: action.payload === "All" ? state.allRecipes : createdFilter,
       };
     case DELETE_RECIPE:
-      // let allRecipeDb = state.allRecipes
-      // // console.log("reducerUno", allRecipeDb);
-      // allRecipeDb = allRecipeDb.filter(r => r.id !== action.payload)
-      // // console.log("reducer", recipeDelete);
       return {
         ...state,
         recipes: state.recipes.filter((r) => r.id !== action.payload),

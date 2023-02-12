@@ -7,10 +7,8 @@ const apiKeys = [
   { key: "07be7b1491a444d9ae11e40cdbc8b2b5" },
   { key: "1514abb286ba4986afe6b63438a3541a" },
   { key: "901d1a9a1aa24d8d9e2accc883bee57a" },
-  // { key: "fd0c2b1fa8d54335942fe50414d1d435" },
 ];
 
-// funcion que retorna un apikey aleatorio cada vez q es llamado
 const getApiKey = () => {
   const random = Math.round(Math.random() * apiKeys.length);
   return apiKeys[random]?.key || apiKeys[0].key;
@@ -19,7 +17,7 @@ const getApiKey = () => {
 const apiRecipes = async () => {
   try {
     let allRecipes = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${getApiKey()}&addRecipeInformation=true&number=100`
+      "https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5"
     );
     allRecipes = await allRecipes.data.results.map((r) => {
       return {
