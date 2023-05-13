@@ -18,7 +18,7 @@ const Nav = ({setCurrentPage}) => {
 
   return (
     <Div>
-      <Link to="/home"> <Img src={logo} alt="" /> </Link>
+      <Link to="/home"> <Img src={logo} alt='Imagen de un plato con cubiertos' /> </Link>
       <Header>
         <form onSubmit={handleSearchByName}>
           <input

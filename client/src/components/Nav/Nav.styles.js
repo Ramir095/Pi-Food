@@ -53,6 +53,7 @@ export const Header = styled.div`
   z-index: 1;
 
   & form {
+    display: flex;
     width: 70%;
     max-width: 500px;
     border-radius: 5px;
