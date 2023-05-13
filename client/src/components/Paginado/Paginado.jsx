@@ -1,7 +1,9 @@
 import React from "react";
-import { Div } from "./Paginado.styles";
+import arrowLeft from '../../assets/arrow-fat-left.svg'
+import arrowRight from '../../assets/arrow-fat-right.svg'
+import { Div, ButtonsNumber, ButtonsArrow } from "./Paginado.styles";
 
-const Paginado = ({ recipesPerPage, recipes, paged }) => {
+const Paginado = ({ recipesPerPage, recipes, paged, handleBack, handleNext }) => {
   const pageNumbers = [];
 
   for (let i = 0; i < recipes / recipesPerPage; i++) {
@@ -10,12 +12,18 @@ const Paginado = ({ recipesPerPage, recipes, paged }) => {
 
   return (
     <Div>
+      <ButtonsArrow onClick={handleBack} name='buttonLeft'>
+        <img src={arrowLeft} alt='Flecha para volver atrás' />
+      </ButtonsArrow>
       {pageNumbers &&
         pageNumbers.map((number) => (
-          <button onClick={() => paged(number)} key={number}>
+          <ButtonsNumber onClick={() => paged(number)} key={number}>
             {number}
-          </button>
+          </ButtonsNumber>
         ))}
+      <ButtonsArrow onClick={handleNext} name='buttonRight'>
+        <img src={arrowRight} alt='Flecha para volver atrás' />
+      </ButtonsArrow>
     </Div>
   );
 };

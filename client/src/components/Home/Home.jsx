@@ -74,6 +74,14 @@ const Home = () => {
     dispatch(deleteRecipe(id))
   };
 
+  const handleBack = () => {
+    if(currentPage >= 2) setCurrentPage(currentPage - 1)
+  };
+
+  const handleNext = () => {
+    if(currentPage <= 11) setCurrentPage(currentPage + 1)
+  };
+
   if(!isLoading) {
     return <Loading />
   }
@@ -88,7 +96,7 @@ const Home = () => {
         <Cards currentRecipes={currentRecipes} handleDelete={handleDelete}/>
       </div>
       <div>
-        <Paginado recipesPerPage={recipesPerPage} recipes={recipes.length} paged={paged}/>
+        <Paginado recipesPerPage={recipesPerPage} recipes={recipes.length} paged={paged} handleBack={handleBack} handleNext={handleNext} />
       </div>
     </div>
   )
